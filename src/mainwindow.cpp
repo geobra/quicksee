@@ -45,15 +45,8 @@ void MainWindow::goPressed()
     }
 
     // display the text
-    //ui->textEdit->setAlignment(Qt::AlignCenter);
-#if 0
-    QTextCursor cursor = ui->textEdit->textCursor();
-    QTextBlockFormat textBlockFormat = cursor.blockFormat();
-    textBlockFormat.setAlignment(Qt::AlignHCenter);//or another alignment
-    cursor.mergeBlockFormat(textBlockFormat);
-    ui->textEdit->setTextCursor(cursor);
-#endif
     ui->textEdit->setText(lastDisplayedStr_);
+    ui->textEdit->setAlignment(Qt::AlignCenter);
 
     // remove the text after given timeout
     auto timeout = ui->lcdNumberTime->value() * 100;
@@ -85,6 +78,7 @@ void MainWindow::testPressed()
 
             setInputTextColor(0);
             ui->textEdit->setText(lastDisplayedStr_);
+            ui->textEdit->setAlignment(Qt::AlignCenter);
         }
         else
         {
@@ -93,6 +87,7 @@ void MainWindow::testPressed()
 
             setInputTextColor(1);
             ui->textEdit->setText(lastDisplayedStr_ + " (" + enteredText + ")");
+            ui->textEdit->setAlignment(Qt::AlignCenter);
         }
 
         QTimer *timer = new QTimer(this);
@@ -104,6 +99,8 @@ void MainWindow::testPressed()
           ui->textEdit->clear();
           timer->deleteLater();
         } );
+
+        lastDisplayedStr_.clear();
     }
 }
 
