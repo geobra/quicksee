@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // defaults
     ui->horizontalSliderChars->setSliderPosition(3);
     ui->lcdNumberChars->display(3);
     ui->horizontalSliderTime->setSliderPosition(3);
@@ -22,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->pushButtonGo->setPalette(pal);
     ui->pushButtonGo->update();
 
+    // some connects
     connect(ui->pushButtonGo, SIGNAL(clicked()), this, SLOT(goPressed()));
 
     connect(ui->pushButtonTest, SIGNAL(clicked()), this, SLOT(testPressed()));
@@ -43,7 +45,14 @@ void MainWindow::goPressed()
     }
 
     // display the text
-    ui->textEdit->setAlignment(Qt::AlignCenter);
+    //ui->textEdit->setAlignment(Qt::AlignCenter);
+#if 0
+    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextBlockFormat textBlockFormat = cursor.blockFormat();
+    textBlockFormat.setAlignment(Qt::AlignHCenter);//or another alignment
+    cursor.mergeBlockFormat(textBlockFormat);
+    ui->textEdit->setTextCursor(cursor);
+#endif
     ui->textEdit->setText(lastDisplayedStr_);
 
     // remove the text after given timeout
@@ -69,39 +78,43 @@ void MainWindow::testPressed()
     }
     else
     {
+        auto timeout = 600;
         if (enteredText.compare(lastDisplayedStr_, Qt::CaseInsensitive) == 0)
         {
             incrementCorrect();
 
             setInputTextColor(0);
+            ui->textEdit->setText(lastDisplayedStr_);
         }
         else
         {
             incrementFailure();
+            timeout = 2000;
 
             setInputTextColor(1);
+            ui->textEdit->setText(lastDisplayedStr_ + " (" + enteredText + ")");
         }
 
-        auto timeout = 6 * 100;
         QTimer *timer = new QTimer(this);
         timer->setSingleShot(true);
         timer->start(timeout);
 
         connect(timer, &QTimer::timeout, [=]() {
           this->setInputTextColor(2);
+          ui->textEdit->clear();
           timer->deleteLater();
         } );
     }
 }
 
-void MainWindow::setInputTextColor(int color) // 0: green, 1: orange, 2: no
+void MainWindow::setInputTextColor(int color) // 0: green, 1: orange, 2: white
 {
     // display a colored background for a short period of time
     Qt::GlobalColor targetColor = Qt::green;
     if (color == 1)
         targetColor = Qt::red;
     else if (color == 2)
-        targetColor = Qt::transparent;
+        targetColor = Qt::white;
 
     QPalette pal = ui->textEdit->palette();
     pal.setColor(QPalette::Base, QColor(targetColor));

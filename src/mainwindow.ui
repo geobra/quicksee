@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>QuickSee</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget">
@@ -148,7 +148,7 @@
         <bool>false</bool>
        </property>
        <property name="text">
-        <string>Go</string>
+        <string>Los</string>
        </property>
       </widget>
      </item>
