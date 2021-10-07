@@ -71,14 +71,14 @@ void MainWindow::testPressed()
     }
     else
     {
+        ui->lineEditTest->setDisabled(true);
+
         auto timeout = 600;
         if (enteredText.compare(lastDisplayedStr_, Qt::CaseInsensitive) == 0)
         {
             incrementCorrect();
 
             setInputTextColor(0);
-            ui->textEdit->setText(lastDisplayedStr_);
-            ui->textEdit->setAlignment(Qt::AlignCenter);
         }
         else
         {
@@ -97,6 +97,8 @@ void MainWindow::testPressed()
         connect(timer, &QTimer::timeout, [=]() {
           this->setInputTextColor(2);
           ui->textEdit->clear();
+          ui->lineEditTest->setDisabled(false);
+          ui->lineEditTest->setFocus();
           timer->deleteLater();
         } );
 
