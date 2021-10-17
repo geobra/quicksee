@@ -26,6 +26,12 @@ private:
     Ui::MainWindow *ui;
 
 private slots:
+    void lcdCharInc();
+    void lcdCharDec();
+
+    void lcdTimeInc();
+    void lcdTimeDec();
+
     void goPressed();
     void testPressed();
 };

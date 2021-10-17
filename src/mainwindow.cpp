@@ -3,6 +3,7 @@
 
 #include <QTimer>
 #include <QRandomGenerator>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -11,9 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     // defaults
-    ui->horizontalSliderChars->setSliderPosition(3);
     ui->lcdNumberChars->display(3);
-    ui->horizontalSliderTime->setSliderPosition(3);
     ui->lcdNumberTime->display(3);
 
     // make go button blue
@@ -24,12 +23,60 @@ MainWindow::MainWindow(QWidget *parent)
     ui->pushButtonGo->update();
 
     // some connects
+    // go and test button
     connect(ui->pushButtonGo, SIGNAL(clicked()), this, SLOT(goPressed()));
-
     connect(ui->pushButtonTest, SIGNAL(clicked()), this, SLOT(testPressed()));
+
+    // time and chars buttons to display
+    connect(ui->pushButtonCharAdd, SIGNAL(clicked()), this, SLOT(lcdCharInc()));
+    connect(ui->pushButtonCharSub, SIGNAL(clicked()), this, SLOT(lcdCharDec()));
+
+    connect(ui->pushButtonTimeAdd, SIGNAL(clicked()), this, SLOT(lcdTimeInc()));
+    connect(ui->pushButtonTimeSub, SIGNAL(clicked()), this, SLOT(lcdTimeDec()));
+
+    // return on lineEdit
     connect(ui->lineEditTest, SIGNAL(returnPressed()), this, SLOT(testPressed()));
 
+    ui->lineEditTest->setFocus();
+
 }
+
+void MainWindow::lcdCharInc()
+{
+    auto value = ui->lcdNumberChars->value();
+    if (value < 10)
+    {
+        ui->lcdNumberChars->display(value + 1);
+    }
+}
+
+void MainWindow::lcdCharDec()
+{
+    auto value = ui->lcdNumberChars->value();
+    if (value > 1)
+    {
+        ui->lcdNumberChars->display(value - 1);
+    }
+}
+
+void MainWindow::lcdTimeInc()
+{
+    auto value = ui->lcdNumberTime->value();
+    if (value < 20)
+    {
+        ui->lcdNumberTime->display(value + 1);
+    }
+}
+
+void MainWindow::lcdTimeDec()
+{
+    auto value = ui->lcdNumberTime->value();
+    if (value > 1)
+    {
+        ui->lcdNumberTime->display(value - 1);
+    }
+}
+
 
 void MainWindow::goPressed()
 {

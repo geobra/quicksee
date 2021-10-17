@@ -29,7 +29,7 @@
        <property name="maximumSize">
         <size>
          <width>16777215</width>
-         <height>200</height>
+         <height>300</height>
         </size>
        </property>
        <property name="font">
@@ -63,8 +63,13 @@
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>30</height>
+           <height>60</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>50</pointsize>
+          </font>
          </property>
         </widget>
        </item>
@@ -168,22 +173,39 @@
         </widget>
        </item>
        <item>
-        <widget class="QLCDNumber" name="lcdNumberChars"/>
+        <widget class="QPushButton" name="pushButtonCharSub">
+         <property name="font">
+          <font>
+           <pointsize>15</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>-</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLCDNumber" name="lcdNumberChars">
+         <property name="font">
+          <font>
+           <pointsize>15</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonCharAdd">
+         <property name="font">
+          <font>
+           <pointsize>15</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>+</string>
+         </property>
+        </widget>
        </item>
       </layout>
-     </item>
-     <item>
-      <widget class="QSlider" name="horizontalSliderChars">
-       <property name="minimum">
-        <number>2</number>
-       </property>
-       <property name="maximum">
-        <number>10</number>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -198,22 +220,39 @@
         </widget>
        </item>
        <item>
-        <widget class="QLCDNumber" name="lcdNumberTime"/>
+        <widget class="QPushButton" name="pushButtonTimeSub">
+         <property name="font">
+          <font>
+           <pointsize>15</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>-</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLCDNumber" name="lcdNumberTime">
+         <property name="font">
+          <font>
+           <pointsize>15</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonTimeAdd">
+         <property name="font">
+          <font>
+           <pointsize>15</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>+</string>
+         </property>
+        </widget>
        </item>
       </layout>
-     </item>
-     <item>
-      <widget class="QSlider" name="horizontalSliderTime">
-       <property name="maximum">
-        <number>20</number>
-       </property>
-       <property name="singleStep">
-        <number>1</number>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
      </item>
     </layout>
    </widget>
@@ -231,38 +270,5 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>horizontalSliderChars</sender>
-   <signal>sliderMoved(int)</signal>
-   <receiver>lcdNumberChars</receiver>
-   <slot>display(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>400</x>
-     <y>391</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>601</x>
-     <y>304</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>horizontalSliderTime</sender>
-   <signal>sliderMoved(int)</signal>
-   <receiver>lcdNumberTime</receiver>
-   <slot>display(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>400</x>
-     <y>564</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>601</x>
-     <y>477</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
