@@ -17,6 +17,7 @@ public:
 
 private:
     QChar getRandomChar();
+    QChar getRandomSymbol();
     void incrementTries();
     void incrementCorrect();
     void incrementFailure();

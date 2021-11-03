@@ -68,7 +68,7 @@
          </property>
          <property name="font">
           <font>
-           <pointsize>50</pointsize>
+           <pointsize>35</pointsize>
           </font>
          </property>
         </widget>
@@ -163,9 +163,42 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string/>
+         </property>
+         <widget class="QRadioButton" name="radioButtonChar">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>151</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Buchstaben</string>
+          </property>
+         </widget>
+         <widget class="QRadioButton" name="radioButtonSymbol">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>151</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Sonderzeichen</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item>
         <widget class="QLabel" name="labelChars">
          <property name="text">
-          <string>Buchstaben</string>
+          <string>Anzahl</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>

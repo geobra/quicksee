@@ -22,6 +22,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->pushButtonGo->setPalette(pal);
     ui->pushButtonGo->update();
 
+    // make chars default
+    ui->radioButtonChar->setChecked(true);
+
     // some connects
     // go and test button
     connect(ui->pushButtonGo, SIGNAL(clicked()), this, SLOT(goPressed()));
@@ -85,9 +88,18 @@ void MainWindow::goPressed()
     lastDisplayedStr_.clear();
     auto nrOfChars = ui->lcdNumberChars->value();
 
+    QChar randomChar{};
     for(auto i = 0; i < nrOfChars; i++)
     {
-        QChar randomChar = getRandomChar();
+        if (ui->radioButtonChar->isChecked() == true)
+        {
+            randomChar = getRandomChar();
+        }
+        else
+        {
+            randomChar = getRandomSymbol();
+        }
+
         lastDisplayedStr_ += randomChar;
     }
 
@@ -190,6 +202,14 @@ void MainWindow::incrementFailure()
     ui->lcdNumberWrong->display(tries);
 }
 
+
+QChar MainWindow::getRandomSymbol()
+{
+    QString symbols = {"!#$%&()+-/<>=?[]{}@*§\"\\~.,;_|°^'"};
+    QChar c = symbols.at(QRandomGenerator::global()->generate() % symbols.size());
+
+    return c;
+}
 
 QChar MainWindow::getRandomChar()
 {
